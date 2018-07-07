@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../player';
+import { Match }  from '../match';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { PlayerService } from '../player.service';
+import { MatchService } from '../match.service';
 
 @Component({
   selector: 'app-player-detail',
@@ -13,8 +14,11 @@ import { PlayerService } from '../player.service';
 export class PlayerDetailComponent implements OnInit {
 
   @Input() player: Player;
+  matches: Match[];
 
-  constructor(private route: ActivatedRoute, private playerService: PlayerService, private location: Location) { }
+  constructor(private route: ActivatedRoute, 
+    private playerService: PlayerService, 
+    private matchService: MatchService) { }
 
   getplayer(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -22,8 +26,16 @@ export class PlayerDetailComponent implements OnInit {
       .subscribe(player => this.player = player);
   }
 
+  getmatches(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.matchService.getMatches(id)
+      .subscribe(matches => this.matches = matches.matches);
+    console.log(this.matches)
+  }
+
   ngOnInit() {
     this.getplayer();
+    this.getmatches();
   }
 
 }

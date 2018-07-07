@@ -13,6 +13,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
+import { DailyStatsComponent } from './daily-stats/daily-stats.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
     MessagesComponent,
     PlayersComponent,
     PlayerDetailComponent,
+    DailyStatsComponent,
   ],
   imports: [
     BrowserModule,
