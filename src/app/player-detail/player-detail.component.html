@@ -8,10 +8,19 @@
       <input [(ngModel)]="player.name" placeholder="name">
     </label>
   </div>
-  <ul class="matches">
-    <li *ngFor="let match of matches">
-      <span class="badge">{{match.score}}</span> {{match.result}} {{match.name}} {{match.grade}} {{match.opponent_grade}}
-    </li>
-  </ul>
+  <div>
+    <mat-table [dataSource]="matches">
+      <ng-container matColumnDef="opponent">
+        <mat-header-cell *matHeaderCellDef> Opponent </mat-header-cell>
+        <mat-cell *matCellDef="let match"> {{match.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+        <mat-cell *matCellDef="let match"> {{match.date}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+    </mat-table>
+  </div>
 
 </div>

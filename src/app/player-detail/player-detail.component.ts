@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Player } from '../player';
-import { Match }  from '../match';
+import { Match } from '../match';
 import { ActivatedRoute } from '@angular/router';
 
 import { PlayerService } from '../player.service';
@@ -15,9 +15,10 @@ export class PlayerDetailComponent implements OnInit {
 
   @Input() player: Player;
   matches: Match[];
+  displayedColumns = ['opponent', 'date'];
 
-  constructor(private route: ActivatedRoute, 
-    private playerService: PlayerService, 
+  constructor(private route: ActivatedRoute,
+    private playerService: PlayerService,
     private matchService: MatchService) { }
 
   getplayer(): void {
@@ -31,6 +32,10 @@ export class PlayerDetailComponent implements OnInit {
     this.matchService.getMatches(id)
       .subscribe(matches => this.matches = matches.matches);
     console.log(this.matches)
+  }
+
+  onRowClicked(row) {
+    console.log('Row clicked: ', row);
   }
 
   ngOnInit() {
