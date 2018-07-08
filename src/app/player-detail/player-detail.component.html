@@ -10,7 +10,7 @@
   </div>
   <ul class="matches">
     <li *ngFor="let match of matches">
-      <span class="badge">{{match.score}}</span>
+      <span class="badge">{{match.score}}</span> {{match.result}} {{match.name}} {{match.grade}} {{match.opponent_grade}}
     </li>
   </ul>
 

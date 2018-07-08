@@ -15,6 +15,8 @@ import { PlayersComponent } from './players/players.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { DailyStatsComponent } from './daily-stats/daily-stats.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { DailyStatsComponent } from './daily-stats/daily-stats.component';
       InMemoryDataService, { dataEncapsulation: false }
     ),
     FormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
