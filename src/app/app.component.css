@@ -1,0 +1,10 @@
+li {
+    display: inline;
+}
+a {
+    display: inline;
+}
+.navbar {
+    background: #a8a599;
+    width: 100%;
+}

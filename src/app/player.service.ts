@@ -3,14 +3,16 @@ import { MessageService } from './messages.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Player } from './player'
+import { Player } from './player';
+import { PlayerData } from './player-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
 
-  private playersUrl = 'api/players';  
+  private playersUrl = 'api/players';
+  private dataUrl = 'api/data';  
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
@@ -29,6 +31,14 @@ export class PlayerService {
       return this.http.get<Player>(url).pipe(
         tap(_ => this.log(`fetched player id=${id}}`)),
         catchError(this.handleError<Player>(`getPlayer id=${id}}`))
+      );
+    }
+
+    getMatches(id: string): Observable<PlayerData> {
+      const url = `${this.dataUrl}/${id}`;
+      return this.http.get<PlayerData>(url).pipe(
+        tap(_ => this.log(`fetched data for player id=${id}}`)),
+        catchError(this.handleError<PlayerData>(`getPlayer id=${id}}`))
       );
     }
   

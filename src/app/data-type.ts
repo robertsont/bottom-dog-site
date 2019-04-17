@@ -1,4 +1,4 @@
 export type DataType = {
-    x: any,
-    y: any
+    x: number,
+    y: number
 }

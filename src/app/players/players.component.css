@@ -1,0 +1,16 @@
+.mat-table {
+    margin: auto;
+    width: 40%;
+    padding: 10px;
+}
+
+.mat-header-cell {
+    font-size: 1.75em;
+    font-family: "Lucida Console";
+}
+.mat-column-name {
+    flex-grow: 3
+}
+.mat-column-id {
+    flex-grow: 3
+}

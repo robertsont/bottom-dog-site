@@ -5,7 +5,7 @@ import { DataType } from '../data-type';
 import { ActivatedRoute } from '@angular/router';
 
 import { PlayerService } from '../player.service';
-import { MatchService } from '../match.service';
+
 
 import * as d3 from 'd3';
 
@@ -23,8 +23,7 @@ export class PlayerDetailComponent implements OnInit {
   radius = 10;
 
   constructor(private route: ActivatedRoute,
-    private playerService: PlayerService,
-    private matchService: MatchService) { }
+    private playerService: PlayerService) { }
 
   getplayer(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,7 +33,7 @@ export class PlayerDetailComponent implements OnInit {
 
   getmatches(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.matchService.getMatches(id)
+    this.playerService.getMatches(id)
       .subscribe(matches => { this.matches = matches.matches; this.drawChart(this.matches) });
     console.log(this.matches)
   }
@@ -73,6 +72,8 @@ export class PlayerDetailComponent implements OnInit {
     var line = d3.line<DataType>()
       .x(function (d) { return x(d.x) })
       .y(function (d) { return y(d.y) })
+      .curve(d3.curveBasis);
+      
     x.domain(d3.extent(arr, function (d) { return d.x }));
     y.domain(d3.extent(arr, function (d) { return d.y }));
 
@@ -102,10 +103,6 @@ export class PlayerDetailComponent implements OnInit {
       .attr("d", line);
   }
 
-  onRowClicked(row): void {
-    console.log('Row clicked: ', row);
-  }
-
   clicked(event: any): void {
     d3.select(event.target).append('circle')
       .attr('cx', event.x)
@@ -114,6 +111,10 @@ export class PlayerDetailComponent implements OnInit {
         return this.radius;
       })
       .attr('fill', 'red');
+  }
+
+  onRowClicked(row): void {
+    console.log('Row clicked: ', row);
   }
 
   ngOnInit() {

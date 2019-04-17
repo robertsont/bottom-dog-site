@@ -1,6 +1,7 @@
 import { Match } from './match'
 
-export class PlayerMatch {
+export class PlayerData {
     id: string;
     matches: Match[];
+    nemesis: String;
 }

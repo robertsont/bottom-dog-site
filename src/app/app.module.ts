@@ -15,7 +15,7 @@ import { PlayersComponent } from './players/players.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { DailyStatsComponent } from './daily-stats/daily-stats.component';
 
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatToolbarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { MatTableModule } from '@angular/material';
     ),
     FormsModule,
     MatTableModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

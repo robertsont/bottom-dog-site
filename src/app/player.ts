@@ -3,8 +3,8 @@ export class Player {
     type: string;
     grade: number[];
     name: string;
-    code: string;
-    assoc: string;
+    id: string;
+    association: string;
     club: string;
     lastPlayed: string;
 }

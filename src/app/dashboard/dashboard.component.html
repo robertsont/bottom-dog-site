@@ -1,8 +1,40 @@
-<div *ngIf="player">
-  <h2>{{player.name | uppercase}} Details</h2>
+<div class="player-details" *ngIf="player">
+  <h2>{{player.name | uppercase}}</h2>
   <div>
     <span>ID: </span>{{player.id}}</div>
   <div>
-    <span>ID: </span>{{player.name}}</div>
-  <app-daily-stats></app-daily-stats>
+    <span>Rank: </span>{{player.rank}}</div>
+  <div>
+    <span>Grade: </span>{{player.grade[0]}} Wins: {{player.grade[1]}}</div>
+  <div>
+    <span>Club: </span>{{player.club}}</div>
+  <div>
+    <span>Association: </span>{{player.association}}</div>
 </div>
+<div class='nemesis' *ngIf='nemesis'>
+  <h2>Your nemesis is: {{nemesis}}</h2>
+</div>
+<div class='ten-matches'>
+  <h2>Ten randomly selected matches:</h2>
+  <mat-table [dataSource]="randomMatches">
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let match"> {{match.date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="opponent">
+        <mat-header-cell *matHeaderCellDef>Opponent</mat-header-cell>
+        <mat-cell *matCellDef="let match"> {{match.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="result">
+        <mat-header-cell *matHeaderCellDef>Result</mat-header-cell>
+        <mat-cell *matCellDef="let match"> {{match.result}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="score">
+      <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+      <mat-cell *matCellDef="let match"> {{match.score}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
+<app-daily-stats></app-daily-stats>
